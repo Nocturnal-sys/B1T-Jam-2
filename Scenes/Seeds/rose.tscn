@@ -1,7 +1,27 @@
-[gd_scene load_steps=33 format=3 uid="uid://dmet3q6o3bwh7"]
+[gd_scene load_steps=34 format=3 uid="uid://dmet3q6o3bwh7"]
 
 [ext_resource type="PackedScene" uid="uid://cq7mm10urh2cb" path="res://Scenes/Classes/seed.tscn" id="1_1byt7"]
 [ext_resource type="Texture2D" uid="uid://dk30u6k7obxeg" path="res://Assets/Sprites/Seed_Sprites/rose_seed.png" id="2_fqm0a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1byt7"]
+atlas = ExtResource("2_fqm0a")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqm0a"]
+atlas = ExtResource("2_fqm0a")
+region = Rect2(512, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddhh4"]
+atlas = ExtResource("2_fqm0a")
+region = Rect2(544, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggye8"]
+atlas = ExtResource("2_fqm0a")
+region = Rect2(576, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcofe"]
+atlas = ExtResource("2_fqm0a")
+region = Rect2(608, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5x2k8"]
 atlas = ExtResource("2_fqm0a")
@@ -67,22 +87,6 @@ region = Rect2(448, 0, 32, 32)
 atlas = ExtResource("2_fqm0a")
 region = Rect2(480, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ddhh4"]
-atlas = ExtResource("2_fqm0a")
-region = Rect2(512, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ggye8"]
-atlas = ExtResource("2_fqm0a")
-region = Rect2(544, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bcofe"]
-atlas = ExtResource("2_fqm0a")
-region = Rect2(576, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6x308"]
-atlas = ExtResource("2_fqm0a")
-region = Rect2(608, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_eap8i"]
 atlas = ExtResource("2_fqm0a")
 region = Rect2(256, 0, 32, 32)
@@ -121,6 +125,26 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iwmwu"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1byt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqm0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddhh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggye8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcofe")
+}],
+"loop": false,
+"name": &"bloom",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5x2k8")
@@ -169,18 +193,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yxaru")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ddhh4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ggye8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bcofe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6x308")
 }],
 "loop": false,
 "name": &"grow",
@@ -225,5 +237,5 @@ plant_type = 3
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_iwmwu")
-animation = &"seed"
+animation = &"bloom"
 autoplay = "seed"
