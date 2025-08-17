@@ -86,6 +86,7 @@ modulate = Color(0.266667, 0.988235, 0.611765, 1)
 curve = SubResource("Curve2D_1l0tm")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+visible = false
 rotation = 1.57079
 rotates = false
 

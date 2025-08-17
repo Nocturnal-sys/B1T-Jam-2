@@ -12,6 +12,10 @@ const SEED_BORDER_SELECTED = preload("res://Assets/Sprites/seed_border_selected.
 @onready var down: RayCast2D = $Down
 @onready var left: RayCast2D = $Left
 @onready var right: RayCast2D = $Right
+@onready var up_2: RayCast2D = $Up2
+@onready var down_2: RayCast2D = $Down2
+@onready var left_2: RayCast2D = $Left2
+@onready var right_2: RayCast2D = $Right2
 
 @export var color: Color
 @export_enum(
@@ -71,6 +75,10 @@ func get_adjacent() -> Array[Seed]:
 	if down.is_colliding(): adjacent_seeds.append(down.get_collider())
 	if left.is_colliding(): adjacent_seeds.append(left.get_collider())
 	if right.is_colliding(): adjacent_seeds.append(right.get_collider())
+	if up_2.is_colliding(): adjacent_seeds.append(up_2.get_collider())
+	if down_2.is_colliding(): adjacent_seeds.append(down_2.get_collider())
+	if left_2.is_colliding(): adjacent_seeds.append(left_2.get_collider())
+	if right_2.is_colliding(): adjacent_seeds.append(right_2.get_collider())
 	return adjacent_seeds
 
 

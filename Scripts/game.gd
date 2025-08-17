@@ -3,6 +3,7 @@ extends Node2D
 @onready var grid: Node2D = $SeedGrid
 @onready var score_value: Label = $MarginContainer/ScoreValue
 @onready var path: PathFollow2D = $Path2D/PathFollow2D
+@onready var lotus: AnimatedSprite2D = $Lotus
 
 var seed_size: int = 32
 var grid_width: int = 8
@@ -17,6 +18,7 @@ var swap_seed: Seed
 var matched_seeds: Array[Seed]
 var score = 0
 
+var score_tween: Tween
 var swap_tween: Tween
 var selected_tween: Tween
 
@@ -40,6 +42,13 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	path.progress_ratio += 0.01
 	score_value.text = _create_score_text()
+
+
+func increase_score(num: int) -> void:
+	if score_tween:
+		score_tween.kill()
+	score_tween = create_tween()
+	score_tween.tween_property($".","score",score+num,2)
 
 
 func _create_score_text() -> String:
@@ -80,7 +89,7 @@ func populate_grid(width, height):
 
 
 func _generate_random_seed() -> Seed:
-	return seed_options[randf_range(0, seed_options.size()-1)].instantiate()
+	return seed_options[randf_range(0, seed_options.size())].instantiate()
 
 
 func _add_seed(pos: Vector2, seed_index: int) -> void:
@@ -130,6 +139,7 @@ func _replace_seed(plant: Seed) -> void:
 	if is_matching(new_plant):
 		for matched in matched_seeds:
 			matched.germinate()
+			lotus.decrease_tick_time(0.2)
 
 
 func print_seed_array():
@@ -160,9 +170,11 @@ func seed_selected(this_seed: Seed, adjacent: Array[Seed]):
 			selected_seed.just_swapped()
 			swap_seed = null
 		else:
+			path.show()
 			for matched in matched_seeds:
 				is_matching(matched)
 				matched.germinate()
+				lotus.decrease_tick_time(0.3)
 
 
 func swap_seeds() -> void:
@@ -225,8 +237,17 @@ func get_matching_direction(check_seed: Seed, direction: String) -> Array[Seed]:
 
 
 func _bloom_seeds():
+	path.hide()
+	lotus.reset_tick_time()
+	var score_increase: int = 0
+	var grown_count: int = 0
 	for grown in matched_seeds:
+		grown_count += 1
 		grown.bloom()
+	score_increase = pow(2,float(grown_count/1.5))
+	increase_score(score_increase)
+	SceneManager.score += score_increase
+	lotus.heal(grown_count/3)
 
 
 func _on_lotus_bloom() -> void:

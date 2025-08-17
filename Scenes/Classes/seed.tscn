@@ -79,6 +79,34 @@ hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
+[node name="Up2" type="RayCast2D" parent="."]
+position = Vector2(40, -8)
+target_position = Vector2(8, -8)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Down2" type="RayCast2D" parent="."]
+position = Vector2(-8, 40)
+target_position = Vector2(-8, 8)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Left2" type="RayCast2D" parent="."]
+position = Vector2(-8, -8)
+target_position = Vector2(-8, -8)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Right2" type="RayCast2D" parent="."]
+position = Vector2(40, 40)
+target_position = Vector2(8, 8)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="UpDown" type="Area2D" parent="."]
 visible = false
 collision_layer = 2

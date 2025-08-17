@@ -292,7 +292,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"die_1",
-"speed": 8.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -321,7 +321,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"die_2",
-"speed": 8.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -350,7 +350,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"die_3",
-"speed": 8.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -379,7 +379,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"die_4",
-"speed": 8.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -408,7 +408,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"die_5",
-"speed": 8.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -437,7 +437,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"die_6",
-"speed": 8.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -466,7 +466,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"die_7",
-"speed": 8.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -500,11 +500,10 @@ animations = [{
 
 [node name="Lotus" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_p22mx")
-animation = &"open"
+animation = &"die_7"
 script = ExtResource("3_e5l4u")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
 one_shot = true
 
 [node name="TextureButton" type="TextureButton" parent="."]
