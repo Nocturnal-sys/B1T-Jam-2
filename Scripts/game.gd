@@ -49,6 +49,9 @@ func increase_score(num: int) -> void:
 		score_tween.kill()
 	score_tween = create_tween()
 	score_tween.tween_property($".","score",score+num,2)
+	AudioManager.play_score()
+	await score_tween.finished
+	AudioManager.stop_score()
 
 
 func _create_score_text() -> String:
@@ -139,7 +142,7 @@ func _replace_seed(plant: Seed) -> void:
 	if is_matching(new_plant):
 		for matched in matched_seeds:
 			matched.germinate()
-			lotus.decrease_tick_time(0.2)
+			lotus.decrease_tick_time(0.1)
 
 
 func print_seed_array():
@@ -217,9 +220,6 @@ func is_matching(check_seed: Seed) -> bool:
 		for seed_match in horizontal_matches:
 			if seed_match not in matched_seeds:
 				matched_seeds.append(seed_match)
-
-	print(matched_seeds)
-	print(has_matches)
 	return has_matches
 
 
@@ -237,6 +237,7 @@ func get_matching_direction(check_seed: Seed, direction: String) -> Array[Seed]:
 
 
 func _bloom_seeds():
+	get_tree().paused = true
 	path.hide()
 	lotus.reset_tick_time()
 	var score_increase: int = 0
@@ -244,10 +245,10 @@ func _bloom_seeds():
 	for grown in matched_seeds:
 		grown_count += 1
 		grown.bloom()
-	score_increase = pow(2,float(grown_count/1.5))
+	score_increase = pow(2,float(grown_count)/1.5)
 	increase_score(score_increase)
 	SceneManager.score += score_increase
-	lotus.heal(grown_count/3)
+	lotus.heal(int(float(grown_count)/3))
 
 
 func _on_lotus_bloom() -> void:

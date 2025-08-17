@@ -9,4 +9,9 @@ func _ready() -> void:
 
 
 func _on_menu_button_pressed() -> void:
+	AudioManager.play_select()
 	SceneManager.main_menu()
+
+
+func _on_menu_button_mouse_entered() -> void:
+	AudioManager.play_hover()

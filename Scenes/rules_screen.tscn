@@ -1,0 +1,112 @@
+[gd_scene load_steps=15 format=3 uid="uid://iqps0flk4qmv"]
+
+[ext_resource type="Script" uid="uid://bav523fpooph0" path="res://Scenes/rules_screen.gd" id="1_so03f"]
+[ext_resource type="FontFile" uid="uid://bmt6ceey3cljn" path="res://Assets/Fonts/PixelOperator8-Bold.ttf" id="2_oyl2p"]
+[ext_resource type="Texture2D" uid="uid://bwcgk8nbtyvk4" path="res://Assets/Sprites/menu_button.png" id="3_d8j13"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iy7v0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0pbag"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ip7m8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_so03f"]
+atlas = ExtResource("3_d8j13")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eue7w"]
+texture = SubResource("AtlasTexture_so03f")
+region_rect = Rect2(160, 0, 160, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyl2p"]
+atlas = ExtResource("3_d8j13")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_svhnm"]
+texture = SubResource("AtlasTexture_oyl2p")
+region_rect = Rect2(160, 0, 160, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8j13"]
+atlas = ExtResource("3_d8j13")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u5dqr"]
+texture = SubResource("AtlasTexture_d8j13")
+region_rect = Rect2(0, 0, 160, 24)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_so03f"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oyl2p"]
+
+[node name="RulesScreen" type="CanvasLayer"]
+script = ExtResource("1_so03f")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 480.0
+offset_bottom = 416.0
+color = Color(0, 0.121569, 0, 1)
+
+[node name="MenuButton" type="Button" parent="."]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+offset_left = 160.0
+offset_top = 352.0
+offset_right = 320.0
+offset_bottom = 376.0
+theme_override_fonts/font = ExtResource("2_oyl2p")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iy7v0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_0pbag")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ip7m8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_eue7w")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_svhnm")
+theme_override_styles/normal = SubResource("StyleBoxTexture_u5dqr")
+text = "Main Menu"
+
+[node name="Title" type="Label" parent="."]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+offset_left = 160.0
+offset_top = 16.0
+offset_right = 320.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("2_oyl2p")
+theme_override_font_sizes/font_size = 32
+text = "RULES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+offset_left = 48.0
+offset_top = 64.0
+offset_right = 432.0
+offset_bottom = 336.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_so03f")
+
+[node name="RulesText" type="RichTextLabel" parent="ScrollContainer"]
+custom_minimum_size = Vector2(384, 272)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_oyl2p")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_oyl2p")
+bbcode_enabled = true
+text = "
+-Click seeds to highlight the surrounding seeds.
+
+[center][img]res://Assets/Sprites/highlight_example.png[/img][/center]
+
+-You may swap the selected seed with any of the surrounding seeds, including diagonally.
+
+-Match three or more seeds to grow them into plants!
+
+[center][img]res://Assets/Sprites/match_example.png[/img][img]res://Assets/Sprites/arrow_right.png[/img][img]res://Assets/Sprites/grow_example.png[/img]
+
+-The lotus flower at the side of the screen is an indicator of your health.
+
+[center][img]res://Assets/Sprites/lotus_trans.png[/img][/center]
+
+-The more plants you have grown, the faster the lotus will tick towards your doom.
+
+[center][img]res://Assets/Sprites/lotus_mid_death.png[/img][/center]
+
+-Click on the lotus to bloom the plants you have grown and restore life to the lotus!
+
+[center][img]res://Assets/Sprites/cactus_flower.png[/img][img]res://Assets/Sprites/daisy_flower.png[/img][img]res://Assets/Sprites/grass_flower.png[/img][img]res://Assets/Sprites/rose_flower.png[/img][img]res://Assets/Sprites/sunflower.png[/img][img]res://Assets/Sprites/sweet_pea_flower.png[/img][img]res://Assets/Sprites/tulip_flower.png[/img][/center]"
+autowrap_mode = 2
+
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

@@ -1,0 +1,127 @@
+[gd_scene load_steps=14 format=3 uid="uid://dtrb27p60cq7b"]
+
+[ext_resource type="Script" uid="uid://brdqntb8sd1ss" path="res://Scripts/options_menu.gd" id="1_l1wg4"]
+[ext_resource type="FontFile" uid="uid://bmt6ceey3cljn" path="res://Assets/Fonts/PixelOperator8-Bold.ttf" id="2_inh3s"]
+[ext_resource type="Texture2D" uid="uid://bwcgk8nbtyvk4" path="res://Assets/Sprites/menu_button.png" id="3_m6e8v"]
+[ext_resource type="PackedScene" uid="uid://b26rgqb76v3mi" path="res://Scenes/volume_slider.tscn" id="4_inh3s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tqe32"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfavn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_syw6n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14u15"]
+atlas = ExtResource("3_m6e8v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cvaji"]
+texture = SubResource("AtlasTexture_14u15")
+region_rect = Rect2(160, 0, 160, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3ryr"]
+atlas = ExtResource("3_m6e8v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ndqe"]
+texture = SubResource("AtlasTexture_j3ryr")
+region_rect = Rect2(160, 0, 160, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjluv"]
+atlas = ExtResource("3_m6e8v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rf7jh"]
+texture = SubResource("AtlasTexture_rjluv")
+region_rect = Rect2(0, 0, 160, 24)
+
+[node name="OptionsMenu" type="CanvasLayer"]
+script = ExtResource("1_l1wg4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 480.0
+offset_bottom = 416.0
+color = Color(0, 0.121569, 0, 1)
+
+[node name="MenuButton" type="Button" parent="."]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+offset_left = 160.0
+offset_top = 352.0
+offset_right = 320.0
+offset_bottom = 376.0
+theme_override_fonts/font = ExtResource("2_inh3s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tqe32")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qfavn")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_syw6n")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cvaji")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1ndqe")
+theme_override_styles/normal = SubResource("StyleBoxTexture_rf7jh")
+text = "Main Menu"
+
+[node name="MainSlider" parent="." instance=ExtResource("4_inh3s")]
+offset_left = 160.0
+offset_top = 128.0
+offset_right = 320.0
+offset_bottom = 160.0
+bus_name = "Master"
+
+[node name="MusicSlider" parent="." instance=ExtResource("4_inh3s")]
+offset_left = 160.0
+offset_top = 208.0
+offset_right = 320.0
+offset_bottom = 240.0
+bus_name = "Music"
+
+[node name="SfxSlider" parent="." instance=ExtResource("4_inh3s")]
+offset_left = 160.0
+offset_top = 288.0
+offset_right = 320.0
+offset_bottom = 320.0
+bus_name = "Sfx"
+
+[node name="Title" type="Label" parent="."]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+offset_left = 176.0
+offset_top = 32.0
+offset_right = 304.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("2_inh3s")
+text = "OPTIONS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Main" type="Label" parent="."]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+offset_left = 176.0
+offset_top = 96.0
+offset_right = 304.0
+offset_bottom = 128.0
+theme_override_fonts/font = ExtResource("2_inh3s")
+text = "Main"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music" type="Label" parent="."]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+offset_left = 176.0
+offset_top = 176.0
+offset_right = 304.0
+offset_bottom = 208.0
+theme_override_fonts/font = ExtResource("2_inh3s")
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sfx" type="Label" parent="."]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+offset_left = 176.0
+offset_top = 256.0
+offset_right = 304.0
+offset_bottom = 288.0
+theme_override_fonts/font = ExtResource("2_inh3s")
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="MenuButton" to="." method="_on_menu_button_mouse_entered"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="mouse_entered" from="MainSlider" to="." method="_on_main_slider_mouse_entered"]
+[connection signal="mouse_entered" from="MusicSlider" to="." method="_on_music_slider_mouse_entered"]
+[connection signal="mouse_entered" from="SfxSlider" to="." method="_on_sfx_slider_mouse_entered"]

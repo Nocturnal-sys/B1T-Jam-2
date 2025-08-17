@@ -134,6 +134,9 @@ position = Vector2(240, 128)
 sprite_frames = SubResource("SpriteFrames_16hvj")
 autoplay = "default"
 
+[connection signal="mouse_entered" from="PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="OptionsButton" to="." method="_on_options_button_mouse_entered"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="RulesButton" to="." method="_on_rules_button_mouse_entered"]
 [connection signal="pressed" from="RulesButton" to="." method="_on_rules_button_pressed"]

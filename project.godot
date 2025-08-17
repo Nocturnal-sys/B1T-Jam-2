@@ -13,10 +13,15 @@ config_version=5
 config/name="Swap 'n' Bloom"
 run/main_scene="uid://h22sfjeyjx3b"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0.121569, 0, 1)
+boot_splash/use_filter=false
+boot_splash/image="uid://n477d6t5yl3p"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 
 SceneManager="*res://Scripts/Autoloads/scene_manager.gd"
+AudioManager="*res://Scenes/audio_manager.tscn"
 
 [display]
 

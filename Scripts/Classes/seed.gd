@@ -58,6 +58,7 @@ func just_swapped() -> void:
 func germinate() -> void:
 	if not grown:
 		grown = true
+		AudioManager.play_grow()
 		sprite.play("grow")
 
 
@@ -67,6 +68,7 @@ func bloom():
 		await get_tree().create_timer(2).timeout
 		sprite.hide()
 		firework.restart()
+		AudioManager.play_firework()
 
 
 func get_adjacent() -> Array[Seed]:
@@ -117,3 +119,12 @@ func _on_button_pressed() -> void:
 
 func _on_fire_work_finished() -> void:
 	remove_me.emit()
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if sprite.animation == "seed":
+		get_tree().paused = false
+
+
+func _on_button_mouse_entered() -> void:
+	AudioManager.play_hover()

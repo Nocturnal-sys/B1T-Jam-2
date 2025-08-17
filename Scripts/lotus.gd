@@ -25,8 +25,10 @@ func _on_timer_timeout() -> void:
 	anim_name += str(tick)
 	play(anim_name, 0.5)
 	if tick >= 7:
-		SceneManager.game_over()
-		return
+		await animation_finished
+		if tick >= 7:
+			SceneManager.game_over()
+			return
 	timer.start(tick_time)
 
 
@@ -49,8 +51,8 @@ func heal(num: int) -> void:
 	for i in num:
 		anim_name = "die_" + str(start_frame-i)
 		play_backwards(anim_name)
+		tick = tick-1
 		await animation_finished
-	tick = tick-num
 	timer.start(tick_time)
 
 

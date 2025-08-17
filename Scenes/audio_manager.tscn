@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://fhmasjviullr"]
+
+[ext_resource type="Script" uid="uid://crqjp1kkmgrlv" path="res://Scripts/Autoloads/AudioManager.gd" id="1_sm2tf"]
+[ext_resource type="AudioStream" uid="uid://rxrk1ddq4wam" path="res://Assets/Audio/score_sound.mp3" id="2_4tj6f"]
+[ext_resource type="AudioStream" uid="uid://bb5e4k41ubwwk" path="res://Assets/Audio/firework.mp3" id="3_hhwve"]
+[ext_resource type="AudioStream" uid="uid://bi3pugguk5d2q" path="res://Assets/Audio/main_music.mp3" id="4_qixve"]
+[ext_resource type="AudioStream" uid="uid://ntlmngro7kyl" path="res://Assets/Audio/stretch-rubber-rope-foley-3-209716.mp3" id="5_0hehx"]
+[ext_resource type="AudioStream" uid="uid://dj3ctusev0lxq" path="res://Assets/Audio/Lost-Meadow_Looping.mp3" id="6_mjqhu"]
+[ext_resource type="AudioStream" uid="uid://da1m12fvdctbw" path="res://Assets/Audio/bong_001.ogg" id="7_5kf6k"]
+[ext_resource type="AudioStream" uid="uid://dqqubu7ed1gtl" path="res://Assets/Audio/toggle_002.ogg" id="8_tnn7g"]
+
+[node name="AudioManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_sm2tf")
+
+[node name="Score" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4tj6f")
+bus = &"Sfx"
+
+[node name="Firework" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hhwve")
+bus = &"Sfx"
+
+[node name="Main" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qixve")
+volume_db = -5.0
+bus = &"Music"
+
+[node name="Grow" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_0hehx")
+pitch_scale = 0.5
+bus = &"Sfx"
+
+[node name="Menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_mjqhu")
+volume_db = -8.0
+bus = &"Music"
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5kf6k")
+volume_db = -8.0
+bus = &"Sfx"
+
+[node name="Select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_tnn7g")
+volume_db = -12.0
+pitch_scale = 0.5
+bus = &"Sfx"
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+bus = &"Sfx"
