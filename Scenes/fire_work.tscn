@@ -17,5 +17,8 @@ gravity = Vector3(0, 0, 0)
 [node name="FireWork" type="GPUParticles2D"]
 emitting = false
 amount = 400
+lifetime = 0.5
+one_shot = true
 explosiveness = 0.8
+fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_4wea1")

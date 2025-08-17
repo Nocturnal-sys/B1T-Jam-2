@@ -228,7 +228,7 @@ animations = [{
 color = Color(0, 0.898039, 0, 1)
 plant_type = 2
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_be6c0")
 animation = &"bloom"
 autoplay = "seed"

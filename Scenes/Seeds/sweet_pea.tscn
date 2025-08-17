@@ -225,8 +225,9 @@ animations = [{
 }]
 
 [node name="SweetPea" instance=ExtResource("1_w7c14")]
+plant_type = 5
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_kbn4n")
 animation = &"bloom"
 autoplay = "seed"

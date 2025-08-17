@@ -1,24 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4ki2b7visb3c"]
+[gd_scene load_steps=8 format=3 uid="uid://b4ki2b7visb3c"]
 
 [ext_resource type="FontFile" uid="uid://bmt6ceey3cljn" path="res://Assets/Fonts/PixelOperator8-Bold.ttf" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://c3aqk00vrqwnk" path="res://Scripts/game.gd" id="1_qxrlw"]
-[ext_resource type="Texture2D" uid="uid://bggntyur2b2i7" path="res://Assets/Sprites/planter_big.png" id="2_wrm1d"]
+[ext_resource type="Texture2D" uid="uid://2wdya2ron5ms" path="res://Assets/Sprites/planter_big_trans.png" id="2_wowpa"]
 [ext_resource type="PackedScene" uid="uid://dryvdbpb5yi4b" path="res://Scenes/lotus.tscn" id="4_3dryh"]
+[ext_resource type="FontFile" uid="uid://ceonkyvvnpw81" path="res://Assets/Fonts/PixelOperator8.ttf" id="5_wowpa"]
+[ext_resource type="Texture2D" uid="uid://fi351idrss0m" path="res://Assets/Sprites/arrow.png" id="6_i6g32"]
+
+[sub_resource type="Curve2D" id="Curve2D_1l0tm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qxrlw")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 416.0
-offset_bottom = 352.0
-color = Color(0, 0, 0, 1)
+offset_right = 480.0
+offset_bottom = 416.0
+color = Color(0, 0.121569, 0, 1)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-offset_left = 96.0
-offset_top = 32.0
-offset_right = 416.0
-offset_bottom = 352.0
-texture = ExtResource("2_wrm1d")
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+offset_left = 128.0
+offset_top = 80.0
+offset_right = 448.0
+offset_bottom = 400.0
+texture = ExtResource("2_wowpa")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
@@ -26,16 +35,63 @@ patch_margin_bottom = 32
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Label" type="Label" parent="."]
-offset_right = 128.0
-offset_bottom = 32.0
+[node name="TitleLabel" type="Label" parent="."]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+offset_left = 160.0
+offset_top = 32.0
+offset_right = 320.0
+offset_bottom = 64.0
 theme_override_fonts/font = ExtResource("1_ebmjs")
 text = "Be-Bloomed"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SeedGrid" type="Node2D" parent="."]
-position = Vector2(128, 64)
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+position = Vector2(160, 112)
 
-[node name="Lotus" parent="SeedGrid" instance=ExtResource("4_3dryh")]
-position = Vector2(-80, 192)
+[node name="Lotus" parent="." instance=ExtResource("4_3dryh")]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+position = Vector2(64, 320)
 autoplay = "open"
+
+[node name="ScoreLabel" type="Label" parent="."]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+offset_left = 16.0
+offset_top = 112.0
+offset_right = 112.0
+offset_bottom = 135.0
+theme_override_fonts/font = ExtResource("5_wowpa")
+text = "Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+offset_top = 144.0
+offset_right = 128.0
+offset_bottom = 176.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+metadata/_edit_group_ = true
+
+[node name="ScoreValue" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_wowpa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Path2D" type="Path2D" parent="."]
+modulate = Color(0.266667, 0.988235, 0.611765, 1)
+curve = SubResource("Curve2D_1l0tm")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = 1.57079
+rotates = false
+
+[node name="Arrow" type="Sprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(240, -63.9995)
+rotation = -1.5708
+texture = ExtResource("6_i6g32")
+
+[connection signal="bloom" from="Lotus" to="." method="_on_lotus_bloom"]

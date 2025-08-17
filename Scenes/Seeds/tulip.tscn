@@ -225,8 +225,9 @@ animations = [{
 }]
 
 [node name="Tulip" instance=ExtResource("1_4vhmh")]
+plant_type = 6
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_83r8h")
 animation = &"bloom"
 autoplay = "seed"

@@ -5,6 +5,8 @@ extends AnimatedSprite2D
 var tick: int  = 0
 var tick_time: int = 10
 
+signal bloom()
+
 func _ready() -> void:
 	timer.start(tick_time)
 
@@ -18,3 +20,7 @@ func _on_timer_timeout() -> void:
 		SceneManager.game_over()
 		return
 	timer.start()
+
+
+func _on_texture_button_pressed() -> void:
+	bloom.emit()

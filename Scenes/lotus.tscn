@@ -1,8 +1,11 @@
-[gd_scene load_steps=69 format=3 uid="uid://dryvdbpb5yi4b"]
+[gd_scene load_steps=72 format=3 uid="uid://dryvdbpb5yi4b"]
 
 [ext_resource type="Texture2D" uid="uid://cycgtmpcdkkeb" path="res://Assets/Sprites/lotus-dying.png" id="1_4p0t0"]
 [ext_resource type="Texture2D" uid="uid://d4dhvl0tjras4" path="res://Assets/Sprites/lotus-opening.png" id="1_bfh4t"]
-[ext_resource type="Script" uid="uid://7eumxl3cugh4" path="res://Scenes/lotus.gd" id="3_e5l4u"]
+[ext_resource type="Script" uid="uid://7eumxl3cugh4" path="res://Scripts/lotus.gd" id="3_e5l4u"]
+[ext_resource type="Texture2D" uid="uid://b6hkob6rr4sne" path="res://Assets/Sprites/seed_border_unselected.png" id="4_3tsr8"]
+[ext_resource type="Texture2D" uid="uid://csghn03sevy60" path="res://Assets/Sprites/seed_border_selected.png" id="5_7v8rg"]
+[ext_resource type="Texture2D" uid="uid://cidt3yxs8r7s" path="res://Assets/Sprites/seed_border_activated.png" id="5_mawk3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p22mx"]
 atlas = ExtResource("1_4p0t0")
@@ -504,4 +507,15 @@ script = ExtResource("3_e5l4u")
 wait_time = 5.0
 one_shot = true
 
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+texture_normal = ExtResource("4_3tsr8")
+texture_pressed = ExtResource("5_mawk3")
+texture_hover = ExtResource("5_7v8rg")
+stretch_mode = 0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

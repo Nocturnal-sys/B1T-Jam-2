@@ -1,10 +1,104 @@
-[gd_scene load_steps=2 format=3 uid="uid://cq7mm10urh2cb"]
+[gd_scene load_steps=14 format=3 uid="uid://cq7mm10urh2cb"]
 
 [ext_resource type="Script" uid="uid://fw5unalmvcf7" path="res://Scripts/Classes/seed.gd" id="1_nmuq6"]
+[ext_resource type="Texture2D" uid="uid://csghn03sevy60" path="res://Assets/Sprites/seed_border_selected.png" id="2_n2ecd"]
+[ext_resource type="Texture2D" uid="uid://cidt3yxs8r7s" path="res://Assets/Sprites/seed_border_activated.png" id="3_k0a7m"]
+[ext_resource type="Texture2D" uid="uid://b6hkob6rr4sne" path="res://Assets/Sprites/seed_border_unselected.png" id="3_rpef6"]
+[ext_resource type="PackedScene" uid="uid://bamrhpgcr70yk" path="res://Scenes/fire_work.tscn" id="5_k0a7m"]
 
-[node name="Seed" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpef6"]
+size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fkaec"]
+texture = ExtResource("3_k0a7m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n2ecd"]
+texture = ExtResource("2_n2ecd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k0a7m"]
+texture = ExtResource("3_k0a7m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rpef6"]
+texture = ExtResource("2_n2ecd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f0ohm"]
+texture = ExtResource("3_rpef6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0a7m"]
+size = Vector2(16, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0ohm"]
+size = Vector2(16, 160)
+
+[node name="Seed" type="Area2D"]
+collision_mask = 0
 script = ExtResource("1_nmuq6")
 metadata/_custom_type_script = "uid://fw5unalmvcf7"
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_rpef6")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, 16)
+
+[node name="Button" type="Button" parent="."]
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_fkaec")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_n2ecd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_k0a7m")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_rpef6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_f0ohm")
+
+[node name="Up" type="RayCast2D" parent="."]
+position = Vector2(16, -8)
+target_position = Vector2(0, -8)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Down" type="RayCast2D" parent="."]
+position = Vector2(16, 40)
+target_position = Vector2(0, 8)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Left" type="RayCast2D" parent="."]
+position = Vector2(-8, 16)
+target_position = Vector2(-8, 0)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Right" type="RayCast2D" parent="."]
+position = Vector2(40, 16)
+target_position = Vector2(8, 0)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="UpDown" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpDown"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_k0a7m")
+
+[node name="LeftRight" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftRight"]
+visible = false
+position = Vector2(16, 16)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_f0ohm")
+
+[node name="FireWork" parent="." instance=ExtResource("5_k0a7m")]
+position = Vector2(16, 16)
+visibility_rect = Rect2(-16, -16, 32, 32)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="finished" from="FireWork" to="." method="_on_fire_work_finished"]
