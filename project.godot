@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="B1T-Jam-2"
-run/main_scene="uid://b4ki2b7visb3c"
+config/name="Swap 'n' Bloom"
+run/main_scene="uid://h22sfjeyjx3b"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]

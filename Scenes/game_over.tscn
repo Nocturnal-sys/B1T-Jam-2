@@ -83,18 +83,18 @@ atlas = ExtResource("6_j3ryr")
 texture = SubResource("AtlasTexture_14u15")
 region_rect = Rect2(160, 0, 160, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rjluv"]
-atlas = ExtResource("6_j3ryr")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mitgx"]
-texture = SubResource("AtlasTexture_rjluv")
-region_rect = Rect2(160, 0, 160, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3ryr"]
 atlas = ExtResource("6_j3ryr")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rjluv"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mitgx"]
 texture = SubResource("AtlasTexture_j3ryr")
+region_rect = Rect2(160, 0, 160, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjluv"]
+atlas = ExtResource("6_j3ryr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rjluv"]
+texture = SubResource("AtlasTexture_rjluv")
 region_rect = Rect2(0, 0, 160, 24)
 
 [node name="GameOver" type="CanvasLayer"]
@@ -137,7 +137,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_rjluv")
 }
 
-[node name="Button" type="Button" parent="."]
+[node name="MenuButton" type="Button" parent="."]
 modulate = Color(0.266667, 0.988235, 0.611765, 1)
 offset_left = 176.0
 offset_top = 208.0
@@ -151,3 +151,5 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_3817r")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_mitgx")
 theme_override_styles/normal = SubResource("StyleBoxTexture_rjluv")
 text = "Main Menu"
+
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
